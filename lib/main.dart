@@ -1,5 +1,4 @@
 import 'package:e_commerce_flutter/base/constants.dart';
-import 'package:e_commerce_flutter/presentation/screens/home/home_screen.dart';
 import 'package:e_commerce_flutter/presentation/screens/login/login_creen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
