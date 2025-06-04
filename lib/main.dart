@@ -1,5 +1,6 @@
 import 'package:e_commerce_flutter/base/constants.dart';
 import 'package:e_commerce_flutter/screens/home/home_screen.dart';
+import 'package:e_commerce_flutter/screens/login/login_creen.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -19,7 +20,7 @@ class MyApp extends StatelessWidget {
         textTheme: Theme.of(context).textTheme.apply(bodyColor: textColor),
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
-      home: const HomeScreen(),
+      home: const LoginScreen(),
     );
   }
 }
