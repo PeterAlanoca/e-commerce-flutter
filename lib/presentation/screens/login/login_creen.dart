@@ -1,5 +1,6 @@
 import 'package:e_commerce_flutter/application/auth/login_notifier.dart';
 import 'package:e_commerce_flutter/base/constants.dart';
+import 'package:e_commerce_flutter/presentation/screens/home/home_screen.dart';
 import 'package:e_commerce_flutter/presentation/screens/register/register_screen.dart';
 import 'package:e_commerce_flutter/presentation/widgets/generic_dialog.dart';
 import 'package:flutter/material.dart';
@@ -17,11 +18,25 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
   final _passwordController = TextEditingController();
   bool _obscurePassword = true;
 
+  final Map<String, String?> _errors = {};
+
   void _validateAndLogin() async {
-    await ref.read(loginProvider.notifier).login(
-          _usernameController.text.trim(),
-          _passwordController.text,
-        );
+    setState(() {
+      _errors.clear();
+      if (_usernameController.text.trim().isEmpty) {
+        _errors['username'] = 'El usuario es obligatorio';
+      }
+      if (_passwordController.text.isEmpty) {
+        _errors['password'] = 'La contraseña es obligatoria';
+      }
+    });
+
+    if (_errors.isEmpty) {
+      await ref.read(loginProvider.notifier).login(
+            _usernameController.text.trim(),
+            _passwordController.text,
+          );
+    }
   }
 
   @override
@@ -40,7 +55,9 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
             onPrimary: () {
               Navigator.of(context, rootNavigator: true).pop();
               ref.read(loginProvider.notifier).clear();
-              // Navega a tu pantalla principal aquí
+              Navigator.of(context).pushReplacement(
+                MaterialPageRoute(builder: (_) => const HomeScreen()),
+              );
             },
             onSecondary: () {
               Navigator.of(context, rootNavigator: true).pop();
@@ -90,10 +107,11 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
               const SizedBox(height: 40),
               TextField(
                 controller: _usernameController,
-                decoration: const InputDecoration(
-                  prefixIcon: Icon(Icons.person_outline),
+                decoration: InputDecoration(
+                  prefixIcon: const Icon(Icons.person_outline),
                   labelText: 'Nombre de Usuario',
-                  border: UnderlineInputBorder(),
+                  border: const UnderlineInputBorder(),
+                  errorText: _errors['username'],
                 ),
               ),
               const SizedBox(height: 20),
@@ -104,6 +122,7 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
                   prefixIcon: const Icon(Icons.lock_outline),
                   labelText: 'Contraseña',
                   border: const UnderlineInputBorder(),
+                  errorText: _errors['password'],
                   suffixIcon: IconButton(
                     icon: Icon(
                       _obscurePassword ? Icons.visibility_off : Icons.visibility,
@@ -118,14 +137,16 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
               ),
               const SizedBox(height: 16),
               Row(
+                mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   const Text("No tienes una cuenta?"),
                   TextButton(
                     onPressed: () {
-                       Navigator.push(
+                      Navigator.push(
                         context,
                         MaterialPageRoute(
-                          builder: (context) => const RegisterScreen()),
+                          builder: (context) => const RegisterScreen(),
+                        ),
                       );
                     },
                     child: const Text(
@@ -146,13 +167,14 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
                   onPressed: state.isLoading ? null : _validateAndLogin,
                   child: state.isLoading
                       ? const CircularProgressIndicator(color: Colors.white)
-                      : const Text('Iniciar Sesión',
-                    style: TextStyle(
-                      color: Colors.white,
-                      fontWeight: FontWeight.bold,
-                      letterSpacing: 1.5,
-                    ),
-                  ),
+                      : const Text(
+                          'Iniciar Sesión',
+                          style: TextStyle(
+                            color: Colors.white,
+                            fontWeight: FontWeight.bold,
+                            letterSpacing: 1.5,
+                          ),
+                        ),
                 ),
               ),
               const SizedBox(height: 40),

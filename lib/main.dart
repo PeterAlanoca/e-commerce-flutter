@@ -24,6 +24,20 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         textTheme: Theme.of(context).textTheme.apply(bodyColor: textColor),
         visualDensity: VisualDensity.adaptivePlatformDensity,
+        inputDecorationTheme: const InputDecorationTheme(
+          focusedBorder: UnderlineInputBorder(
+            borderSide: BorderSide(color: accentColor, width: 2),
+          ),
+          labelStyle: TextStyle(
+            color: textLightColor,
+          ),
+          floatingLabelStyle: TextStyle(
+            color: textLightColor,
+          ),
+          hintStyle: TextStyle(
+            color: textLightColor,
+          ),
+        ),
       ),
       home: const LoginScreen(),
     );
