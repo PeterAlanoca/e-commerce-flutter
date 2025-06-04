@@ -1,8 +1,9 @@
 import 'package:e_commerce_flutter/base/constants.dart';
+import 'package:e_commerce_flutter/presentation/screens/register/register_screen.dart';
 import 'package:flutter/material.dart';
 
-class RegisterScreen extends StatelessWidget {
-  const RegisterScreen({super.key});
+class LoginScreen extends StatelessWidget {
+  const LoginScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -16,7 +17,7 @@ class RegisterScreen extends StatelessWidget {
             children: [
               const SizedBox(height: 40),
               const Text(
-                'Registro',
+                'Inventario',
                 style: TextStyle(
                   fontSize: 28,
                   fontWeight: FontWeight.bold,
@@ -24,14 +25,6 @@ class RegisterScreen extends StatelessWidget {
                 ),
               ),
               const SizedBox(height: 40),
-              TextField(
-                decoration: InputDecoration(
-                  prefixIcon: Icon(Icons.badge_outlined),
-                  labelText: 'Nombre',
-                  border: UnderlineInputBorder(),
-                ),
-              ),
-              const SizedBox(height: defaultPadding),
               TextField(
                 decoration: InputDecoration(
                   prefixIcon: Icon(Icons.person_outline),
@@ -48,16 +41,26 @@ class RegisterScreen extends StatelessWidget {
                   border: UnderlineInputBorder(),
                 ),
               ),
-              const SizedBox(height: defaultPadding),
-              TextField(
-                obscureText: true,
-                decoration: InputDecoration(
-                  prefixIcon: Icon(Icons.lock_outline),
-                  labelText: 'Repetir Contraseña',
-                  border: UnderlineInputBorder(),
-                ),
+              const SizedBox(height: 16),
+              Row(
+                children: [
+                  const Text("No tienes una cuenta?"),
+                  TextButton(
+                    onPressed: () {
+                       Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => const RegisterScreen()),
+                      );
+                    },
+                    child: const Text(
+                      'Regístrate aquí',
+                      style: TextStyle(color: accentColor),
+                    ),
+                  ),
+                ],
               ),
-              const SizedBox(height: 24),
+              const SizedBox(height: 16),
               SizedBox(
                 width: double.infinity,
                 height: 48,
@@ -66,10 +69,10 @@ class RegisterScreen extends StatelessWidget {
                     backgroundColor: textColor,
                   ),
                   onPressed: () {
-                    // Acción de registro
+                    // Acción de login
                   },
                   child: const Text(
-                    'Registrarse',
+                    'Iniciar Sesión',
                     style: TextStyle(
                       color: Colors.white,
                       fontWeight: FontWeight.bold,

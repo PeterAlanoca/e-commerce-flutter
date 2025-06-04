@@ -1,8 +1,8 @@
 import 'package:e_commerce_flutter/base/constants.dart';
-import 'package:e_commerce_flutter/models/product.dart';
-import 'package:e_commerce_flutter/screens/details/details_screen.dart';
-import 'package:e_commerce_flutter/screens/home/components/categories_widget.dart';
-import 'package:e_commerce_flutter/screens/home/components/item_card_widget.dart';
+import 'package:e_commerce_flutter/domain/models/product.dart';
+import 'package:e_commerce_flutter/presentation/screens/details/details_screen.dart';
+import 'package:e_commerce_flutter/presentation/screens/home/components/categories_widget.dart';
+import 'package:e_commerce_flutter/presentation/screens/home/components/item_card_widget.dart';
 import 'package:flutter/material.dart';
 
 class BodyWidget extends StatelessWidget {

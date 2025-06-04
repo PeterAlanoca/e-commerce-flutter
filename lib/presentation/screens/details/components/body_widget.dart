@@ -1,10 +1,10 @@
 import 'package:e_commerce_flutter/base/constants.dart';
-import 'package:e_commerce_flutter/models/product.dart';
-import 'package:e_commerce_flutter/screens/details/components/add_to_cart_widget.dart';
-import 'package:e_commerce_flutter/screens/details/components/color_and_size_widget.dart';
-import 'package:e_commerce_flutter/screens/details/components/counter_with_favorite_button.dart';
-import 'package:e_commerce_flutter/screens/details/components/description_widget.dart';
-import 'package:e_commerce_flutter/screens/details/components/product_title_with_image_widget.dart';
+import 'package:e_commerce_flutter/domain/models/product.dart';
+import 'package:e_commerce_flutter/presentation/screens/details/components/add_to_cart_widget.dart';
+import 'package:e_commerce_flutter/presentation/screens/details/components/color_and_size_widget.dart';
+import 'package:e_commerce_flutter/presentation/screens/details/components/counter_with_favorite_button.dart';
+import 'package:e_commerce_flutter/presentation/screens/details/components/description_widget.dart';
+import 'package:e_commerce_flutter/presentation/screens/details/components/product_title_with_image_widget.dart';
 import 'package:flutter/material.dart';
 
 class BodyWidget extends StatelessWidget {

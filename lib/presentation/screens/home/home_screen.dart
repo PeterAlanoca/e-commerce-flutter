@@ -1,5 +1,5 @@
 import 'package:e_commerce_flutter/base/constants.dart';
-import 'package:e_commerce_flutter/screens/home/components/body_widget.dart';
+import 'package:e_commerce_flutter/presentation/screens/home/components/body_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
