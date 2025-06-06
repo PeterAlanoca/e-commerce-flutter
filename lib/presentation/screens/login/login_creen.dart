@@ -40,30 +40,21 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
   }
 
   @override
+  void initState() {
+    super.initState();
+    _usernameController.text = 'peter';
+    _passwordController.text = '111111';
+  }
+
+  @override
   Widget build(BuildContext context) {
     final state = ref.watch(loginProvider);
 
     WidgetsBinding.instance.addPostFrameCallback((_) {
       if (state.success) {
-        showDialog(
-          context: context,
-          builder: (context) => GenericDialog(
-            title: '¡Bienvenido!',
-            message: 'Has iniciado sesión correctamente.',
-            primaryButtonText: 'Aceptar',
-            secondaryButtonText: 'Cerrar',
-            onPrimary: () {
-              Navigator.of(context, rootNavigator: true).pop();
-              ref.read(loginProvider.notifier).clear();
-              Navigator.of(context).pushReplacement(
-                MaterialPageRoute(builder: (_) => const HomeScreen()),
-              );
-            },
-            onSecondary: () {
-              Navigator.of(context, rootNavigator: true).pop();
-              ref.read(loginProvider.notifier).clear();
-            },
-          ),
+        ref.read(loginProvider.notifier).clear();
+        Navigator.of(context).pushReplacement(
+          MaterialPageRoute(builder: (_) => const HomeScreen()),
         );
       }
       if (state.error != null && state.error!.isNotEmpty) {

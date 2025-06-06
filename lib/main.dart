@@ -1,4 +1,6 @@
+import 'package:e_commerce_flutter/application/product/product_state.dart';
 import 'package:e_commerce_flutter/base/constants.dart';
+import 'package:e_commerce_flutter/domain/models/product.dart';
 import 'package:e_commerce_flutter/presentation/screens/login/login_creen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -8,9 +10,15 @@ void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Hive.initFlutter();
   await Hive.openBox('users'); 
+  await Hive.openBox('products');
+
+  final container = ProviderContainer();
+  await container.read(productProvider.notifier).preload(products);
+
   runApp(
-    const ProviderScope(child: MyApp()),
+    UncontrolledProviderScope(container: container, child: const MyApp()),
   );
+
 }
 
 class MyApp extends StatelessWidget {

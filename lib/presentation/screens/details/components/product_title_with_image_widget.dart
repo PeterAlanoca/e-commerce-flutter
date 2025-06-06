@@ -20,7 +20,7 @@ class ProductTitleWithImageWidget extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           const Text(
-            'Aristocratic Hand Bag',
+            'Poleras',
             style: TextStyle(
               color: Colors.white,
             ),
@@ -32,7 +32,6 @@ class ProductTitleWithImageWidget extends StatelessWidget {
                   fontWeight: FontWeight.bold,
                 ),
           ),
-          const SizedBox(height: defaultPadding),
           Row(
             children: [
               RichText(
@@ -54,11 +53,11 @@ class ProductTitleWithImageWidget extends StatelessWidget {
               Expanded(
                 child: Hero(
                   tag: '${product.id}',
-                  child: Image.asset(
-                    product.image,
+                  child: Image.memory(
+                    product.imageBytes,
                     fit: BoxFit.contain,
-                    width: size.width * 0.65,
-                    height: size.width * 0.65,
+                    width: size.width * 0.75,
+                    height: size.width * 0.75,
                   ),
                 ),
               ),

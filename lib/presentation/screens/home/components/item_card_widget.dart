@@ -14,6 +14,9 @@ class ItemCardWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+
+    print("NATY LOG: ${product.image}");
+
     return GestureDetector(
       onTap: () => pressed.call(),
       child: Column(
@@ -21,14 +24,14 @@ class ItemCardWidget extends StatelessWidget {
         children: [
           Expanded(
             child: Container(
-              padding: const EdgeInsets.all(defaultPadding),
+              padding: const EdgeInsets.all(10),
               decoration: BoxDecoration(
                 color: product.color,
                 borderRadius: BorderRadius.circular(16),
               ),
               child: Hero(
                 tag: '${product.id}',
-                child: Image.asset(product.image),
+                child: Image.memory(product.imageBytes)
               ),
             ),
           ),
