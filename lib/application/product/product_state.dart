@@ -23,6 +23,17 @@ class ProductNotifier extends StateNotifier<ProductState> {
   void load() {
     state = ProductState(products: repository.getAll(), isLoading: false);
   }
+
+  Future<void> addProduct(Product product) async {
+    state = ProductState(isLoading: true);
+    await repository.addProduct(product);
+    state = ProductState(products: repository.getAll(), isLoading: false);
+  }
+
+  Future<void> deleteProduct(int id) async {
+    await repository.deleteProduct(id);
+    state = ProductState(products: repository.getAll(), isLoading: false);
+  }
 }
 
 final productProvider = StateNotifierProvider<ProductNotifier, ProductState>((ref) {

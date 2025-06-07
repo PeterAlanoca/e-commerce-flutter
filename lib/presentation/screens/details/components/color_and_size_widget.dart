@@ -43,7 +43,7 @@ class ColorAndSizeWidget extends StatelessWidget {
               style: const TextStyle(color: textColor),
               children: [
                 const TextSpan(
-                  text: 'Size\n',
+                  text: 'Tamaño\n',
                 ),
                 TextSpan(
                   text: '${product.size} cm',

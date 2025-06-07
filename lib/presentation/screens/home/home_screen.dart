@@ -1,4 +1,5 @@
 import 'package:e_commerce_flutter/base/constants.dart';
+import 'package:e_commerce_flutter/presentation/screens/home/add_product_screen.dart';
 import 'package:e_commerce_flutter/presentation/screens/home/components/body_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -9,12 +10,12 @@ class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: buildAppBar(),
+      appBar: buildAppBar(context),
       body: const BodyWidget(),
     );
   }
 
-  AppBar buildAppBar() {
+  AppBar buildAppBar(BuildContext context) { // <-- recíbelo aquí
     return AppBar(
       backgroundColor: Colors.white,
       elevation: 0,
@@ -24,20 +25,14 @@ class HomeScreen extends StatelessWidget {
       ),
       actions: [
         IconButton(
-          icon: SvgPicture.asset(
-            'assets/icons/search.svg',
-            colorFilter: const ColorFilter.mode(textColor, BlendMode.srcIn),
-          ),
+          icon: const Icon(Icons.add),
           color: textColor,
-          onPressed: () {},
-        ),
-        IconButton(
-          icon: SvgPicture.asset(
-            'assets/icons/cart.svg',
-            colorFilter: const ColorFilter.mode(textColor, BlendMode.srcIn),
-          ),
-          color: textColor,
-          onPressed: () {},
+          onPressed: () {
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => const AddProductScreen()),
+            );
+          },
         ),
         const SizedBox(width: defaultPadding / 2)
       ],

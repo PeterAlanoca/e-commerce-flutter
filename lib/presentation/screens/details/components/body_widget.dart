@@ -1,20 +1,21 @@
 import 'package:e_commerce_flutter/base/constants.dart';
 import 'package:e_commerce_flutter/domain/models/product.dart';
 import 'package:e_commerce_flutter/presentation/screens/details/components/add_to_cart_widget.dart';
+import 'package:e_commerce_flutter/presentation/screens/details/components/cart_counter_widget.dart';
 import 'package:e_commerce_flutter/presentation/screens/details/components/color_and_size_widget.dart';
-import 'package:e_commerce_flutter/presentation/screens/details/components/counter_with_favorite_button.dart';
 import 'package:e_commerce_flutter/presentation/screens/details/components/description_widget.dart';
 import 'package:e_commerce_flutter/presentation/screens/details/components/product_title_with_image_widget.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:e_commerce_flutter/application/product/product_state.dart';
 
-class BodyWidget extends StatelessWidget {
-
+class BodyWidget extends ConsumerWidget {
   final Product product;
 
   const BodyWidget({super.key, required this.product});
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     Size size = MediaQuery.of(context).size;
     return SingleChildScrollView(
       child: Column(
@@ -30,7 +31,6 @@ class BodyWidget extends StatelessWidget {
                     left: defaultPadding,
                     right: defaultPadding,
                   ),
-                  //height: 500,
                   decoration: const BoxDecoration(
                     color: Colors.white,
                     borderRadius: BorderRadius.only(
@@ -44,9 +44,15 @@ class BodyWidget extends StatelessWidget {
                       const SizedBox(height: defaultPadding / 2),
                       DescriptionWidget(product: product),
                       const SizedBox(height: defaultPadding / 2),
-                      const CounterWithFavoriteButton(),
+                      const CartCounterWidget(),
                       const SizedBox(height: defaultPadding / 2),
-                      AddToCartWidget(product: product)
+                      AddToCartWidget(
+                        product: product,
+                        onDelete: () async {
+                          await ref.read(productProvider.notifier).deleteProduct(product.id);
+                          Navigator.of(context).pop();
+                        },
+                      ),
                     ],
                   ),
                 ),

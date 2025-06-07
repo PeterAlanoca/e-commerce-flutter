@@ -1,16 +1,16 @@
 import 'package:e_commerce_flutter/base/constants.dart';
 import 'package:e_commerce_flutter/domain/models/product.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 
 class AddToCartWidget extends StatelessWidget {
-  
+  final Product product;
+  final VoidCallback? onDelete;
+
   const AddToCartWidget({
     super.key,
     required this.product,
+    this.onDelete,
   });
-
-  final Product product;
 
   @override
   Widget build(BuildContext context) {
@@ -18,27 +18,6 @@ class AddToCartWidget extends StatelessWidget {
       padding: const EdgeInsets.symmetric(vertical: defaultPadding),
       child: Row(
         children: [
-          Container(
-            width: 58,
-            height: 50,
-            margin: const EdgeInsets.only(right: defaultPadding),
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(18),
-              border: Border.all(
-                color: product.color,
-              ),
-            ),
-            child: IconButton(
-              icon: SvgPicture.asset(
-                'assets/icons/add_to_cart.svg',
-                colorFilter: ColorFilter.mode(
-                  product.color,
-                  BlendMode.srcIn,
-                ),
-              ),
-              onPressed: () {},
-            ),
-          ),
           Expanded(
             child: SizedBox(
               height: 50,
@@ -55,9 +34,9 @@ class AddToCartWidget extends StatelessWidget {
                     color: Colors.white,
                   ),
                 ),
-                onPressed: () {},
+                onPressed: onDelete,
                 child: Text(
-                  'Buy Now'.toUpperCase(),
+                  'Eliminar'.toUpperCase(),
                 ),
               ),
             ),

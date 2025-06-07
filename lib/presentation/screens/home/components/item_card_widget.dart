@@ -14,8 +14,24 @@ class ItemCardWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-
-    print("NATY LOG: ${product.image}");
+    Widget imageWidget;
+    try {
+      if (product.image.isNotEmpty) {
+        imageWidget = Image.memory(
+          product.imageBytes,
+          fit: BoxFit.cover,
+          width: double.infinity,
+          height: double.infinity,
+          errorBuilder: (context, error, stackTrace) {
+            return const Center(child: Icon(Icons.broken_image, size: 60, color: Colors.white));
+          },
+        );
+      } else {
+        imageWidget = const Center(child: Icon(Icons.image, size: 60, color: Colors.white));
+      }
+    } catch (e) {
+      imageWidget = const Center(child: Icon(Icons.broken_image, size: 60, color: Colors.white));
+    }
 
     return GestureDetector(
       onTap: () => pressed.call(),
@@ -31,7 +47,10 @@ class ItemCardWidget extends StatelessWidget {
               ),
               child: Hero(
                 tag: '${product.id}',
-                child: Image.memory(product.imageBytes)
+                child: ClipRRect(
+                  borderRadius: BorderRadius.circular(8),
+                  child: imageWidget,
+                ),
               ),
             ),
           ),

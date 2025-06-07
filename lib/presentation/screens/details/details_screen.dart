@@ -1,4 +1,3 @@
-import 'package:e_commerce_flutter/base/constants.dart';
 import 'package:e_commerce_flutter/domain/models/product.dart';
 import 'package:e_commerce_flutter/presentation/screens/details/components/body_widget.dart';
 import 'package:flutter/material.dart';
@@ -29,23 +28,6 @@ class DetailsScreen extends StatelessWidget {
           colorFilter: const ColorFilter.mode(Colors.white, BlendMode.srcIn),
         ),
       ),
-      actions: [
-        IconButton(
-          onPressed: () {},
-          icon: SvgPicture.asset(
-            'assets/icons/search.svg',
-            colorFilter: const ColorFilter.mode(Colors.white, BlendMode.srcIn),
-          ),
-        ),
-        IconButton(
-          onPressed: () {},
-          icon: SvgPicture.asset(
-            'assets/icons/cart.svg',
-            colorFilter: const ColorFilter.mode(Colors.white, BlendMode.srcIn),
-          ),
-        ),
-        const SizedBox(width: defaultPadding / 2)
-      ],
     );
   }
 }

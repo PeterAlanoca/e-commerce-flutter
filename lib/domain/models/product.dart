@@ -6,6 +6,7 @@ class Product {
   final int id;
   final String title;
   final int price;
+  int total;
   final int size;
   final String description;
   final String image;
@@ -15,6 +16,7 @@ class Product {
     required this.id,
     required this.title,
     required this.price,
+    this.total = 1,
     required this.size,
     required this.description,
     required this.image,
@@ -25,6 +27,7 @@ class Product {
         'id': id,
         'title': title,
         'price': price,
+        'total': total,
         'size': size,
         'description': description,
         'image': image, 
@@ -35,6 +38,7 @@ class Product {
         id: map['id'],
         title: map['title'],
         price: map['price'],
+        total: map['total'],
         size: map['size'],
         description: map['description'],
         image: map['image'],
